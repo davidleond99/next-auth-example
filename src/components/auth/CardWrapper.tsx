@@ -8,7 +8,7 @@ import {
   CardHeader,
   Header,
   Social,
-} from "..";
+} from "@/components/index";
 
 interface Props {
   children: React.ReactNode;

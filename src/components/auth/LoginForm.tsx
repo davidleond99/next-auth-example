@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { LoginSchema } from "../../schemas/index";
+import { LoginSchema } from "@/schemas/index";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -16,9 +16,9 @@ import {
   Button,
   FormError,
   FormSuccess,
-} from "..";
-import { login } from "@/actions/login";
+} from "@/components/index";
 import { useState, useTransition } from "react";
+import { login } from "@/actions";
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { RegisterSchema } from "../../schemas/index";
+import { RegisterSchema } from "@/schemas/index";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -16,9 +16,9 @@ import {
   Button,
   FormError,
   FormSuccess,
-} from "..";
-import { register } from "@/actions/register";
+} from "@/components/index";
 import { useState, useTransition } from "react";
+import { register } from "@/actions";
 
 export const RegisterForm = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
