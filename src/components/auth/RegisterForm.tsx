@@ -17,7 +17,7 @@ import {
   FormError,
   FormSuccess,
 } from "..";
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 import { useState, useTransition } from "react";
 
 export const RegisterForm = () => {
@@ -38,7 +38,7 @@ export const RegisterForm = () => {
     setErrorMessage("");
     setSuccessMessage("");
     startTransition(() => {
-      login(values).then((data) => {
+      register(values).then((data) => {
         setErrorMessage(data.error);
         setSuccessMessage(data.success);
       });
