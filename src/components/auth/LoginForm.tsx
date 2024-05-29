@@ -14,6 +14,8 @@ import {
   FormMessage,
   Input,
   Button,
+  FormError,
+  FormSuccess,
 } from "..";
 
 export const LoginForm = () => {
@@ -70,6 +72,8 @@ export const LoginForm = () => {
               )}
             />
           </div>
+          <FormError message="" />
+          <FormSuccess message="" />
           <Button type="submit" className="w-full">
             Login
           </Button>
