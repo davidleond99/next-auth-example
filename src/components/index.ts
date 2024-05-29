@@ -6,6 +6,7 @@ export * from "./ui/label";
 export * from "./auth/CardWrapper";
 export * from "./auth/LoginButton";
 export * from "./auth/LoginForm";
+export * from "./auth/RegisterForm";
 export * from "./auth/Header";
 export * from "./auth/Social";
 export * from "./auth/BackButton";

@@ -10,7 +10,12 @@ interface Props {
 
 export const BackButton = ({ label, href }: Props) => {
   return (
-    <Button variant={"link"} className="font-normal w-full" size={"sm"} asChild>
+    <Button
+      variant={"link"}
+      className="font-normal w-full hover:font-semibold transition-all"
+      size={"sm"}
+      asChild
+    >
       <Link href={href}>{label}</Link>
     </Button>
   );
