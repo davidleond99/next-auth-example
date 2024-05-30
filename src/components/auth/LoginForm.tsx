@@ -36,11 +36,19 @@ export const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setErrorMessage("");
     setSuccessMessage("");
-    startTransition(() => {
-      login(values).then((data) => {
-        setErrorMessage(data.error);
-        setSuccessMessage(data.success);
-      });
+    startTransition(async () => {
+      try {
+        const data = await login(values);
+
+        if (data?.error) {
+          setErrorMessage(data.error);
+        } else if (data?.success) {
+          setSuccessMessage(data.success);
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        setErrorMessage("An unexpected error occurred.");
+      }
     });
   };
 

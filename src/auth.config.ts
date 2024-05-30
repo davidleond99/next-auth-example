@@ -8,7 +8,6 @@ export const authConfig: NextAuthConfig = {
   pages: {
     signOut: "/auth/login",
     signIn: "/auth/login",
-    newUser: "/auth/register",
   },
   providers: [
     Credentials({
