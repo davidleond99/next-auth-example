@@ -5,13 +5,23 @@ import { LoginSchema } from "@/schemas";
 import { getUserByEmail, getUserById } from "@/actions";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 export const authConfig: NextAuthConfig = {
   pages: {
-    signOut: "/auth/login",
+    error: "/auth/error",
     signIn: "/auth/login",
   },
   providers: [
+    Github({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
     Credentials({
       name: "Credentials",
       async authorize(credentials) {
@@ -40,6 +50,18 @@ export const authConfig: NextAuthConfig = {
   ],
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
+  events: {
+    async linkAccount({ user }) {
+      if (user.id) {
+        await db.user.update({
+          where: {
+            id: user.id,
+          },
+          data: { emailVerified: new Date() },
+        });
+      }
+    },
+  },
   callbacks: {
     async session({ token, session }) {
       if (token.sub && session.user) {
@@ -52,10 +74,9 @@ export const authConfig: NextAuthConfig = {
         session.user.role = token.role;
       }
 
-      console.log(session);
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token, user, account }) {
       if (!token.sub) return token;
 
       const existingUser = await getUserById(token.sub);
