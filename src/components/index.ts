@@ -5,6 +5,7 @@ export * from "./auth/Header";
 export * from "./auth/LoginButton";
 export * from "./auth/LoginForm";
 export * from "./auth/RegisterForm";
+export * from "./auth/NewVerificationForm";
 export * from "./auth/Social";
 export * from "./form/FormError";
 export * from "./form/FormSuccess";
