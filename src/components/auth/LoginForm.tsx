@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "@/schemas/index";
 import { z } from "zod";
@@ -101,6 +102,14 @@ export const LoginForm = () => {
                       placeholder="******"
                     />
                   </FormControl>
+                  <Button
+                    size={"sm"}
+                    variant={"link"}
+                    asChild
+                    className="px-o font-normal"
+                  >
+                    <Link href="/auth/reset">Forgot password</Link>
+                  </Button>
                   <FormMessage />
                 </FormItem>
               )}
